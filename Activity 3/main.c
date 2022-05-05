@@ -17,8 +17,8 @@ int  main()
 {
     char name[100];                // Creating Charater Array 
     printf("Enter name :\n");
-    // scanf("%s",name);
-    gets(name);
+     scanf("%s",name);
+    // gets(name);
     char *ASCII = name;             // Assign name to ASCII pointer of character type
     int len=strlen(ASCII);          // Length of the Array
     SUM(len,ASCII);                 // Calling SUM Function

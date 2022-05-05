@@ -18,10 +18,10 @@ endif
 
 
 Build:
-	gcc $(SRC)  -o $(PROJECT).$(EXEC)
+	gcc $(SRC)  -o $(call FixPath,$(PROJECT).$(EXEC))
 
 Run :
-	./$(PROJECT).$(EXEC)
+	./$(call FixPath,$(PROJECT).$(EXEC))
 
 Analyse:
 	cppcheck --enable=all $(SRC)
