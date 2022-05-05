@@ -1,5 +1,6 @@
 PROJECT = ASCII
-SRC = ASCII.c main.c
+SRC = ./ASCII.c ./main.c
+INC = ./ASCII.h
 TEST_SRC = ./Unit_ASCII.c
 
 
@@ -17,20 +18,26 @@ endif
 
 
 Build:
-	gcc $(SRC)  -o $(PROJECT).out
+	gcc $(SRC)  -o $(PROJECT).$(EXEC)
 
 Run :
-	./$(PROJECT).out
+	./$(PROJECT).$(EXEC)
 
 Analyse:
 	cppcheck --enable=all $(SRC)
 
-clean :
-	rm -rf *.out 
-
 dynamic_analysis : Build
-	valgrind ./$(call FixPath,$(PROJ_NAME).$(EXEC))
+	valgrind ./$(call FixPath,$(PROJECT).$(EXEC))
 	
-coverage:
-	gcc -fprofile-arcs -ftest-coverage $(SRC) $(INC) -o $(call FixPath,$(PROJ_NAME).$(EXEC)) -lm
-	gcov -a ./$(call FixPath,$(PROJ_NAME).$(EXEC))
+# coverage:
+# 	gcc -fprofile-arcs -ftest-coverage $(SRC) $(INC) -o $(call FixPath,$(PROJECT).$(EXEC)) -lm
+# 	gcov -a ./$(call FixPath,$(PROJECT).$(EXEC))
+
+clean :
+	rm -rf *.out *.gcda *.gcno *.gcov
+
+
+COVERAGE :
+	gcc -fprofile-arcs -ftest-coverage $(SRC) $(TEST_SRC) -o $(PROJECT).out -lgtest -lgtest_main -lpthread
+	./$(PROJECT).out 
+	gcov -a $(SRC)
