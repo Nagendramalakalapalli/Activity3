@@ -18,15 +18,21 @@ SUM(len,name);
 void setUp(){}
 void tearDown(){}
 
+void test_SUM(void)
+{
+    TEST_ASSERT_EQUAL((10,"NAGENDRA"),SUM(10,"NAGENDRA"));
+}
+
 void test_ASCII(void)
 {
-    TEST_ASSERT_EQUAL(208,SUM(10,"NAGENDRA"));
+ TEST_ASSERT_EQUAL(208,SUM(len,name));
 }
 
 int main()
 {
   UNITY_BEGIN();
 
+  RUN_TEST(test_SUM);
   RUN_TEST(test_ASCII);
 
   return UNITY_END();

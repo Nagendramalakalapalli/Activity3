@@ -1,9 +1,9 @@
 PROJECT = ASCII
-SRC = ./ASCII.c ./main.c
-TEST_SRC = ./unit_ASCII.c
+SRC = ASCII.c main.c
+TEST_SRC = ./Unit_ASCII.c
 
 Build:
-	gcc $(SRC) $(TEST_SRC) -o $(PROJECT).out
+	gcc $(SRC)  -o $(PROJECT).out
 
 Run :
 	./$(PROJECT).out
